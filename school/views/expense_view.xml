@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <!-- Form View Of Student Reminder -->
+        <record id="view_expense_form_2" model="ir.ui.view">
+            <field name="name">Expense form</field>
+            <field name="model">school.expense</field>
+            <field name="arch" type="xml">
+                <form string="Expense">
+                    <sheet>
+                        <separator string="Register  an Expense" />
+                        <group col="4" colspan="4">
+                            <field name="name"  />
+                            <field name="amount"   required="1" />
+                            <field name="description"  required="1"/>
+     <field name="date"  required="1"/>
+                            <!--<newline />-->
+                            <!--<field name="description" colspan="4" placeholder="Description"/>-->
+                        </group>
+                          <group col="4" colspan="4">
+
+
+
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+            <record id="view_student_expense_tree" model="ir.ui.view">
+            <field name="name">Expense</field>
+            <field name="model">school.expense</field>
+            <field name="arch" type="xml">
+                <tree string="School fee">
+                    <field name="name" />
+                    <field name="description" />
+                     <field name="amount" />
+                     <field name="date" />
+
+                </tree>
+            </field>
+        </record>
+
+        <record  id="school_expense_action_window" model="ir.actions.act_window">
+      <field name="name">Expenses</field>
+      <field name="res_model">school.expense</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+        <!-- Menu Item Of EMS -->
+
+        <!-- Menu Item Of Dashboard -->
+        <!-- <menuitem id="menu_dashboard" name="Dashboard" parent="menu_ems" action="open_board_my_dash_action" sequence="1"
+                  icon="terp-project" web_icon_hover="images/hover.png"/> -->
+        <!-- Menu of DashBoard -->
+<!--           <menuitem id="menu_school_dashboard" name="Dashboard" action="school_dashboard_act" sequence="2"  -->
+<!--             parent="menu_ems" icon="fa-dashboard" web_icon="school,static/description/dashboard.png"/> -->
+<menuitem id="school_expense_menu" name="Expenses" parent="menu_ems" action="school_expense_action_window" sequence="6"  groups="group_school_administration" />
+
+
+</odoo>

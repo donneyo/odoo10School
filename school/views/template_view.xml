@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<odoo>
+    <data>
+        <template id="assets_backend" name="school assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/school/static/src/less/schoolcss.less"/>
+            </xpath>
+        </template>
+
+
+<template id="custom_po_header">
+         <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+
+        <div class="header">
+              <style type="text/css">
+
+
+
+tr.border_bottom_head td {
+  border-bottom:2pt solid black;
+}
+tr.border_bottom_row td {
+  border-bottom:1pt solid #B6B6B4;
+
+}
+/* Uncomment this if you want the tables to have joined lines
+ *
+ table{
+    border-collapse: collapse;
+}
+*/
+
+
+table.withboarder, table.withboarder tr td{
+    border: 1px solid #B6B6B4;
+    border-collapse: collapse;
+}
+
+.custom_th {
+    background-color: #707070 ;
+
+    color : #FFFFFF;
+
+}
+
+.custom_charge {
+  background-color : #f2f2f2;
+}
+
+
+/* reference: ../addons/web/static/lib/bootstrap/css/bootstrap.css  */
+.table-bordered-black {
+  border: 0.5px solid #000000;
+}
+
+.table-bordered-black > thead > tr > th,
+.table-bordered-black > tbody > tr > th,
+.table-bordered-black > tfoot > tr > th,
+.table-bordered-black > thead > tr > td,
+.table-bordered-black > tbody > tr > td,
+.table-bordered-black > tfoot > tr > td {
+  border: 0.5px solid #000000;
+
+}
+.table-bordered-black > thead > tr > th,
+.table-bordered-black > thead > tr > td {
+  border-bottom-width: 0px;
+}
+
+
+</style>
+       <div class="row"  >
+            <div class="col-xs-1" style = "margin-top:5px" >
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+            </div>
+            <div class="col-xs-11 text-center"  style = "margin-top:5px;font-weight:bold" >
+                                <div><h3>OneGas Sales Ltd.</h3></div>
+                <div  >
+                    <div>Head Office: 15, Falolo Street, Surulere, Lagos.</div>
+               <!--    <div>Service Centre: 11,, Off Adelabu Street,</div>-->
+                    <div>Tel: 234(1)7646424, 7642972   |  E-mail: sales@onegas.com</div>
+                                </div>
+ </div>
+                        <div class="row" >
+                                <div class="col-xs-12" align="left"  >
+	                                        <span><b>RC: 34046</b></span>
+                                </div>
+                        </div>
+        </div>
+ </div>
+</template>
+
+
+
+   <template id="report_receipt_view">
+      <t t-call="report.html_container">
+
+                <t t-foreach="docs" t-as="o">
+ <t t-call="school.custom_po_header" />
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                               <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+                        <div class="header">
+                              <div class="row"  >
+            <div class="col-xs-1" style = "margin-top:5px" >
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+            </div>
+            <div class="col-xs-11 text-center"  style = "margin-top:5px;font-weight:bold" >
+                                <div><h3>OneGas Sales Ltd.</h3></div>
+                <div  >
+                    <div>Head Office: 15, Falolo Street, Surulere, Lagos.</div>
+               <!--    <div>Service Centre: 11,, Off Adelabu Street,</div>-->
+                    <div>Tel: 234(1)7646424, 7642972   |  E-mail: sales@onegas.com</div>
+                                </div>
+ </div>
+                        <div class="row" >
+                                <div class="col-xs-12" align="left"  >
+	                                        <span><b>RC: 34046</b></span>
+                                </div>
+                        </div>
+        </div>
+ </div>
+
+                            <div class="row mt32 mb32"  style="font-family: 'Helvetica';font-size: 30px;text-align:center;">
+                                <span>
+                                    <b t-field="o.name"></b>
+                                </span>
+                            </div>
+                            <!--<div class="row" align="center" style="font-family: 'Helvetica';font-size: 20px;">-->
+                                <!--<span>For the month of </span>-->
+                                <!--<span t-esc="get_month(o.date)"></span>-->
+                            <!--</div>-->
+
+                            <br />
+                                          <div class="row mt32 mb32" align="center" style="font-family: 'Helvetica';">
+
+                                    <h2>School fee receipt  of
+                                    <span t-field="o.student.name"></span>
+
+                            </h2>
+                            <table width="100%">
+                                <tr>
+                                    <td width="30%" style="font-family: 'Helvetica';font-size: 30px;">
+                                        <b>Acedemic year</b>
+                                    </td>
+                                    <td width="20%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="50%" style="font-family: 'Helvetica';font-size: 30px;">
+                                        <span t-field="o.year"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" style="font-family: 'Helvetica';font-size: 30px;">
+                                        <b>Date</b>
+                                    </td>
+                                    <td width="20%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="50%" style="font-family: 'Helvetica';font-size: 30px;">
+                                        <span t-esc="time.strftime('%Y-%m-%d')"></span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br />
+                            <table width="100%" class="table table-striped" style="background-color:#9b9da0 !important;">
+                                <thead>
+                                    <tr>
+                                        <td width="5%" style="font-family: 'Helvetica';font-size: 30px;" align="center">
+                                            <b>#&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &#160;&#160; &#160; &#160;&#160;&#160;&#160;&#160; &#160;&#160; &#160; &#160;</b>
+                                        </td>
+                                        <td width="50%" align="left" style="font-family: 'Helvetica';font-size: 30px;">
+                                            <b>DATE&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &#160;&#160; &#160; &#160;&#160;&#160;&#160;&#160; &#160;&#160; &#160; &#160;</b>
+                                        </td>
+                                        <td align="right" width="45%" style="font-family: 'Helvetica';font-size: 30px;">
+                                            <b>AMOUNT PAID&#160; &#160;&#160; &#160; &#160;&#160;&#160;&#160;&#160; &#160;&#160; &#160; &#160;</b>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="counter" t-value="0"/>
+                                    <t t-foreach="o.school_fees_line" t-as="l">
+                                        <t t-set="counter" t-value="counter+1"/>
+                                        <tr>
+                                            <td>
+                                                <span><t t-esc="counter"></t></span>
+                                            </td>
+
+                                            <td width="50%" align="left" style="font-family: 'Helvetica';font-size: 30px;">
+                                                <span t-field="l.date"></span>
+                                            </td>
+                                            <td align="right" width="45%" style="font-family: 'Helvetica';font-size: 30px;">
+                                                <span t-field="l.amount_paid" t-options='{"widget": "monetary","display_currency": l.currency_id}'></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                                              <br />
+                                              <br />
+
+                                              <br />
+                            <div class="row">
+                                <div class="col-xs-12pull-right">
+                                    <table class="table table-condensed">
+                                        <tr>
+                                            <td><strong>Total Fees</strong></td>
+                                            <td class="text-right">
+                                                <span t-field="o.amount_to_be_paid"
+                                                    t-options='{"widget": "monetary","display_currency": o.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Amount Paid</strong></td>
+                                            <td class="text-right">
+                                                <span t-field="o.amount_paid" t-options='{"widget": "monetary","display_currency": o.currency_id}'/>
+                                                    <!--/>-->
+                                            </td>
+                                        </tr>
+                                        <tr class="border-black">
+                                            <td><strong>Due Amount</strong></td>
+                                            <td class="text-right">
+                                                <span t-field="o.amount_due" t-options='{"widget": "monetary","display_currency": o.currency_id}'/>
+                                                    <!--/>-->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 pull-right">
+                                <br/><br/>
+                                <b>Principal,</b>
+                                <br/><br/><br/>
+                                <span style="font-family: 'Helvetica';font-size: 25px;">Authorized Signature</span>
+                                <br />
+                           </div>
+                                          </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+    </template>
+
+        <report
+
+            id="report_receipt"
+
+            string="School Receipt"
+
+            model="school.fee"
+
+            report_type="qweb-pdf"
+attachment_use="True"
+            file="school.report_receipt"
+
+            name="school.report_receipt_view"
+                />
+
+
+
+    </data>
+</odoo>

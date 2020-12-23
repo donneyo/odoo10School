@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <!-- Form View Of Student Reminder -->
+        <record id="view_attendance_form_2" model="ir.ui.view">
+            <field name="name">Attendance form</field>
+            <field name="model">school.attendance</field>
+            <field name="arch" type="xml">
+                <form string="Attendance">
+                    <sheet>
+                        <separator string="Register  Attendance" />
+                        <group col="4" colspan="4">
+                            <field name="name"  />
+                            <field name="date"   required="1" />
+                            <field name="registered_by"  required="1"/>
+
+                            <!--<newline />-->
+                            <!--<field name="description" colspan="4" placeholder="Description"/>-->
+                        </group>
+                          <group col="4" colspan="4">
+
+                              <!--<field name="date"  required="1"/>-->
+
+                        </group>
+                        <notebook>
+                            <page string="Class Attendance">
+                                   <field name="attendance_line"   widget='one2many'>
+                                         <tree editable="bottom">
+                                              <field name="class_id"/>
+                                             <field name="attendance_file"/>
+                                         </tree>
+                                   </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+            <record id="view_student_attendance_tree" model="ir.ui.view">
+            <field name="name">Attendance</field>
+            <field name="model">school.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance">
+                    <field name="name" />
+                    <field name="date" />
+                     <field name="registered_by" />
+                </tree>
+            </field>
+        </record>
+
+        <record  id="school_attendance_action_window" model="ir.actions.act_window">
+      <field name="name">Attendance</field>
+      <field name="res_model">school.attendance</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+        <!-- Menu Item Of EMS -->
+
+        <!-- Menu Item Of Dashboard -->
+        <!-- <menuitem id="menu_dashboard" name="Dashboard" parent="menu_ems" action="open_board_my_dash_action" sequence="1"
+                  icon="terp-project" web_icon_hover="images/hover.png"/> -->
+        <!-- Menu of DashBoard -->
+<!--           <menuitem id="menu_school_dashboard" name="Dashboard" action="school_dashboard_act" sequence="2"  -->
+<!--             parent="menu_ems" icon="fa-dashboard" web_icon="school,static/description/dashboard.png"/> -->
+<menuitem id="school_attendance_menu" name="Attendance" parent="menu_ems" action="school_attendance_action_window" sequence="4"  groups="group_school_administration" />
+
+
+</odoo>
